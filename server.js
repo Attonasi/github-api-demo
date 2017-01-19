@@ -11,11 +11,11 @@ app.get('/', (req, res) => {
 
 app.get('github/*', proxy.GitHub);
 
-function proxy.GitHub(req, res) => {
+function proxyGitHub(req, res){
   console.log('routing a github request for ', request.params[0]);
   (requestProxy({
     url:`https://api.github.com/s{request.params[0]}`
-    headers:{ Authorization: 'tken ${process.env.GITHUB_TOKEN}'}
+    headers:{ Authorization: `token ${process.env.GITHUB_TOKEN}`
   }))(req, res);
 }
 
